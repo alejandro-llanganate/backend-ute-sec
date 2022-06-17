@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { ScanController } from './scan.controller';
 
-@Module({})
+@Module({
+    controllers: [ScanController]
+})
 export class ScansModule {}
