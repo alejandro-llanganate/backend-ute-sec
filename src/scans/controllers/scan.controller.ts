@@ -1,30 +1,35 @@
 import { Controller, Delete, Get, Post, Put } from "@nestjs/common";
+import { ScanService } from "../services/scan.service";
 
 @Controller('/scans')
 export class ScanController{
 
+    constructor(
+        private scanService : ScanService
+    ){}
+
     @Get('/getAllScans')
     getAllScans(){
-        return 'getAllScans'
+        return this.scanService.getAllScans();
     }
 
     @Get('/getScanById')
     getScanById(){
-        return 'getScanById'
+        return this.scanService.getScanById();
     }
 
     @Post('/createScan')
     createScan(){
-        return 'createScan'
+        return this.scanService.createScan();
     }
 
     @Put('/updateScan')
     updateScan(){
-        return 'updateScan'
+        return this.scanService.updateScan();
     }
 
     @Delete('/deleteScan')
     deleteScan(){
-        return 'deleteScan'
+        return this.scanService.deleteScan();
     }
 }
