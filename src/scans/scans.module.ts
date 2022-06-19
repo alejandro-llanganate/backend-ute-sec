@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ScanController } from './scan.controller';
+import { ScanController } from './controllers/scan.controller';
 
 @Module({
     controllers: [ScanController]
