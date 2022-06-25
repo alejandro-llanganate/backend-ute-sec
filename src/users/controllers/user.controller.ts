@@ -16,7 +16,7 @@ export class UserController {
 
     @Get('/getUserById')
     getUserById() {
-        return this.userService.getUserById();
+//        return this.userService.getUserById();
     }
 
     @Post('/createUser')

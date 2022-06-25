@@ -4,10 +4,14 @@ import { ReportsModule } from './reports/reports.module';
 import { UsersModule } from './users/users.module';
 import { ScansModule } from './scans/scans.module';
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { ConfigModule } from "@nestjs/config";
 
 @Module(
   {
     imports: [
+      ConfigModule.forRoot({
+        isGlobal: true,
+      }),
       AuthModule,
       ReportsModule,
       UsersModule,
@@ -15,11 +19,11 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       TypeOrmModule.forRoot(
         {
           type: 'postgres',
-          host: 'localhost',
-          port: 5432,
-          username: 'root',
-          password: '1R4T55SFF1',
-          database: 'my_db',
+          host: process.env.P_HOST,
+          port: Number(process.env.P_PORT),
+          username: process.env.P_USER,
+          password: process.env.P_PASSWORD,
+          database: process.env.P_DATABASE,
           autoLoadEntities: true,
           synchronize: true,
         }
