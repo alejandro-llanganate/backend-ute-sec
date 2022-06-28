@@ -19,7 +19,7 @@ export class UserService {
         const found = await this.userRepo.findOne(id); 
     }
 */
-    createUser() {
+    async createUser() {
         return 'createUser';
     }
 
