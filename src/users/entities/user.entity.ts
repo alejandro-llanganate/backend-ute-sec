@@ -1,20 +1,25 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UserRolEntity } from "src/auth/entities/user-rol.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('User')
 export class UserEntity {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column("varchar", { length: 40})
-    nombre: string;
+    name: string;
 
     @Column("varchar", { length: 50})
-    apellido: string;
+    lastname: string;
 
     @Column("varchar", { length: 50})
     email: string;
 
     @Column("varchar", { length: 100})
     password: string;
+
+
+    @OneToMany( () => UserRolEntity, (userRols) => userRols.user)
+    userRols: UserEntity[];
 }
