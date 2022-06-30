@@ -11,7 +11,6 @@ export enum TipificacionCode {
 
 @Entity()
 export class RiskEntity {
-
     @PrimaryGeneratedColumn()
     id: number
 
