@@ -5,12 +5,14 @@ import { UsersModule } from 'src/users/users.module';
 import { ActionController } from './controllers/action.controller';
 import { AuthController } from './controllers/auth.controller';
 import { RolController } from './controllers/rol.controller';
+import { UserRolController } from './controllers/user-rol.controller';
 import { ActionEntity } from './entities/action.entity';
 import { RolEntity } from './entities/rol.entity';
 import { UserRolEntity } from './entities/user-rol.entity';
 import { ActionService } from './services/action.service';
 import { AuthService } from './services/auth.service';
 import { RolService } from './services/rol.service';
+import { UserRolService } from './services/user-rol.service';
 
 @Module({
     imports: [
@@ -20,8 +22,8 @@ import { RolService } from './services/rol.service';
             UserRolEntity,
         ]),
     ],
-    controllers: [AuthController, RolController, ActionController],
-    providers: [AuthService, RolService, ActionService],
+    controllers: [AuthController, RolController, ActionController, UserRolController],
+    providers: [AuthService, RolService, ActionService, UserRolService],
 
 })
 export class AuthModule {}
