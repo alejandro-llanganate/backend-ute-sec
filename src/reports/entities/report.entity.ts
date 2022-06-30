@@ -1,14 +1,18 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ObservationEntity } from "./observation.enitity";
 
 @Entity('Report')
 export class ReportEntity {
 
     @PrimaryGeneratedColumn('uuid')
-    id: string
+    id: string;
 
     @Column()
-    fecha: Date
+    fecha: Date;
 
     @Column()
     url: string
+
+    @OneToMany( () => ObservationEntity, observation => observation.report)
+    observaciones: ObservationEntity[]
 }

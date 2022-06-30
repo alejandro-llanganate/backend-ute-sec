@@ -1,35 +1,24 @@
-import { Controller, Delete, Get, Post, Put } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { ApiProperty, ApiTags } from "@nestjs/swagger";
 import { ScanService } from "../services/scan.service";
 
-@Controller('/scans')
+@ApiTags('Escaneo')
+@Controller('/scan')
 export class ScanController{
 
     constructor(
         private scanService : ScanService
     ){}
 
-    @Get('/getAllScans')
-    getAllScans(){
-        return this.scanService.getAllScans();
-    }
-
-    @Get('/getScanById')
-    getScanById(){
-        return this.scanService.getScanById();
-    }
-
-    @Post('/createScan')
-    createScan(){
+    @ApiProperty(
+        {
+            description: 'Método para escanear una página web.'
+        }
+    )
+    @Get('/scanWebPage/:url')
+    async scanWebPage(
+        @Param('url') url : string
+    ){
         return this.scanService.createScan();
-    }
-
-    @Put('/updateScan')
-    updateScan(){
-        return this.scanService.updateScan();
-    }
-
-    @Delete('/deleteScan')
-    deleteScan(){
-        return this.scanService.deleteScan();
     }
 }

@@ -1,6 +1,9 @@
-import { Controller, Delete, Get, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { CreateReportDTO, UpdateReportDTO } from "../dto/report.dto";
 import { ReportService } from "../services/report.service";
 
+@ApiTags('Reportes')
 @Controller('/reports')
 export class ReportController{
 
@@ -8,28 +11,56 @@ export class ReportController{
         private reportService : ReportService
     ){}
 
+    @ApiOperation(
+        {
+            description: 'Método para obtener todos los reportes'
+        }
+    )
     @Get('/getAllReports')
-    getAllReports(){
-        return this.reportService.getAllReports();
+    async getAllReports(){
+        return await this.reportService.getAllReports();
     }
 
-    @Get('/getReportById')
-    getReportById(){
-        return this.reportService.getReportById();
+    @ApiOperation(
+        {
+            description: 'Método para obtener un reporte con su id'
+        }
+    )
+    @Get('/getReportById/:id')
+    getReportById(
+        @Param('id') id : string
+    ){
+        return this.reportService.getReportById(id);
     }
 
+    @ApiOperation(
+        {
+            description: 'Método para crear reporte'
+        }
+    )
     @Post('/createReport')
-    createReport(){
-        return this.reportService.createReport();
+    async createReport(
+        @Body() report : CreateReportDTO
+    ){
+        return await this.reportService.createReport(report);
+    }
+    
+    @ApiOperation(
+        {
+            description: 'Método para crear reporte'
+        }
+    )
+    @Put('/updateReport/:id')
+    async updateReport(
+        @Param('id') id : string, @Body() report : UpdateReportDTO
+    ){
+        return this.reportService.updateReport(id, report);
     }
 
-    @Put('/updateReport')
-    updateReport(){
-        return this.reportService.updateReport();
-    }
-
-    @Delete('/deleteReport')
-    deleteReport(){
-        return this.reportService.deleteReport();
+    @Delete('/deleteReport/:id')
+    deleteReport(
+        @Param('id') id : string
+    ){
+        return this.reportService.deleteReport(id);
     }
 }

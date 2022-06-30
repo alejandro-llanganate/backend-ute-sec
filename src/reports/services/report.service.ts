@@ -1,24 +1,33 @@
 import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { CreateReportDTO, UpdateReportDTO } from "../dto/report.dto";
+import { ReportEntity } from "../entities/report.entity";
 
 @Injectable()
 export class ReportService {
-    getAllReports(){
+
+    constructor(
+        @InjectRepository(ReportEntity) reportRepo : Repository<ReportEntity>
+    ){}
+
+    async getAllReports(){
         return 'getAllReports';
     }
 
-    getReportById(){
+    async getReportById(idReport : string){
         return 'getReportById';
     }
 
-    createReport(){
+    async createReport(report : CreateReportDTO){
         return 'createReport';
     }
 
-    updateReport(){
+    async updateReport(idReport : string, report : UpdateReportDTO){
         return 'updateReport';
     }
 
-    deleteReport(){
+    async deleteReport(idReport : string){
         return 'deleteReport';
     }
 }

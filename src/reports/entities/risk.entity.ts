@@ -1,5 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { ObservationModel } from "./observation.model";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 export enum TipificacionCode {
     R2 = "R2",
@@ -22,8 +21,5 @@ export class RiskEntity {
 
     @Column()
     descripcion: string
-
-    @Column()
-    observaciones: ObservationModel[]
 }
 
