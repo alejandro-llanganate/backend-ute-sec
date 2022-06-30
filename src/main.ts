@@ -10,7 +10,6 @@ async function bootstrap(){
     .setTitle('UTE-SEC')
     .setDescription('API del proyecto de seguridad de Ivonne Venegas')
     .setVersion('1.0')
-    .addTag('api')
     .build()
 
   const document = SwaggerModule.createDocument(app, config);

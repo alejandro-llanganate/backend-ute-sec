@@ -1,16 +1,13 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString } from "class-validator";
 
-export class CreateRolDTO {
+export class CreateActionDTO {
     @IsNotEmpty()
     @IsString()
-    @ApiProperty()
     name : string
 }
 
-export class UpdateRolDTO {
+export class UpdateActionDTO {
     @IsNotEmpty()
     @IsString()
-    @ApiProperty()
     name : string
 }

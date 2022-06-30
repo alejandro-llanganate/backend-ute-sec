@@ -4,7 +4,7 @@ import { CreateUserDTO, UpdateUserDTO, UpdateUserPasswordDTO } from "../dto/user
 import { UserService } from "../services/user.service";
 
 @ApiTags('Usuarios')
-@Controller('/User')
+@Controller('api/user')
 export class UserController {
 
     constructor(
