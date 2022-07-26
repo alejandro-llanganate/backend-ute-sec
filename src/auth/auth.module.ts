@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from 'src/users/entities/user.entity';
 import { UsersModule } from 'src/users/users.module';
 import { ActionController } from './controllers/action.controller';
 import { AuthController } from './controllers/auth.controller';
@@ -13,6 +13,7 @@ import { ActionService } from './services/action.service';
 import { AuthService } from './services/auth.service';
 import { RolService } from './services/rol.service';
 import { UserRolService } from './services/user-rol.service';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
     imports: [
@@ -21,9 +22,14 @@ import { UserRolService } from './services/user-rol.service';
             RolEntity,
             UserRolEntity,
         ]),
+        UsersModule,
+        JwtModule.register({
+            secret: "ute-sec",
+            signOptions: { expiresIn: '24h' },
+        }),
     ],
     controllers: [AuthController, RolController, ActionController, UserRolController],
-    providers: [AuthService, RolService, ActionService, UserRolService],
+    providers: [JwtStrategy, AuthService, RolService, ActionService, UserRolService],
 
 })
-export class AuthModule {}
+export class AuthModule { }

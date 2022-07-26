@@ -1,3 +1,4 @@
+import { RolType } from "src/auth/entities/rol.enum";
 import { UserRolEntity } from "src/auth/entities/user-rol.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -19,7 +20,6 @@ export class UserEntity {
     @Column("varchar", { length: 100})
     password: string;
 
-
-    @OneToMany( () => UserRolEntity, (userRols) => userRols.user)
-    userRols: UserEntity[];
+    @Column("varchar", { default: 'USUARIO'})
+    rol : RolType;
 }

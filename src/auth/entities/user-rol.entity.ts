@@ -13,9 +13,7 @@ export class UserRolEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne( () => UserEntity, (user) => user.userRols)
-    @JoinColumn({ name: 'id_user' })
-    user: UserEntity
+
 
     @ManyToOne( () => RolEntity, rol => rol.userRols )
     @JoinColumn({ name: 'id_rol' })

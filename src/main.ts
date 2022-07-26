@@ -7,6 +7,7 @@ async function bootstrap(){
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('UTE-SEC')
     .setDescription('API del proyecto de seguridad de Ivonne Venegas')
     .setVersion('1.0')

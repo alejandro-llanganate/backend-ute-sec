@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Get, Param, Post, Put, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { CreateUserDTO, UpdateUserDTO, UpdateUserPasswordDTO } from "../dto/user.dto";
 import { UserService } from "../services/user.service";
 
+@ApiBearerAuth()
 @ApiTags('Usuarios')
 @Controller('api/user')
 export class UserController {
@@ -21,6 +23,7 @@ export class UserController {
         return await this._userService.getAllUsers();
     }
 
+    @UseGuards(JwtAuthGuard)
     @ApiOperation(
         {
             summary: 'Método para obtener un usuario según su id'
@@ -41,6 +44,8 @@ export class UserController {
         return await this._userService.createUser(user);
     }
 
+    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @ApiOperation(
         {
             summary: 'Método para actualizar un usuario según su id'
@@ -51,6 +56,7 @@ export class UserController {
         return await this._userService.updateUser(id, user);
     }
 
+    @UseGuards(JwtAuthGuard)
     @ApiOperation(
         {
             summary: 'Método para actualizar la contraseña de un usuario'

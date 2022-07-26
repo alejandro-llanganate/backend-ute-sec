@@ -38,7 +38,8 @@ export class UserService {
         if(!userToUpdate) {
             throw new HttpException({ message: 'ERROR' , _errors}, HttpStatus.BAD_REQUEST);
         }else{
-            return this.userRepo.merge(userToUpdate,user);
+            this.userRepo.merge(userToUpdate,user);
+            return this.userRepo.save(userToUpdate);
         }
     }
 
