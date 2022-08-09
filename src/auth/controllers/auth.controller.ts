@@ -30,14 +30,7 @@ export class AuthController {
         }
     }
 
-    @ApiOperation({
-        description: 'Método para hacer logout'
-    })
-    @Post('/logout')
-    logout(){
-        return 'logout'
-    }
-
+  
     @Get('getuser')
     @ApiOperation({
         description: 'Método para obtener un usuario a partir de un token'

@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Type } from "class-transformer";
 import { IsDate, IsNotEmpty, IsString } from "class-validator";
 import { ObservationEntity } from "../entities/observation.enitity";
 
@@ -6,16 +7,18 @@ export class CreateReportDTO {
     @IsDate()
     @IsNotEmpty()
     @ApiProperty()
-    date : Date
+    @Type(() => Date)
+    public date : Date
 
     @IsString()
     @IsNotEmpty()
     @ApiProperty()
-    url : string
+    public url : string
 
+    @IsString()
     @IsNotEmpty()
     @ApiProperty()
-    observations : ObservationEntity
+    public idUsuario : string
 }
 
 export class UpdateReportDTO {

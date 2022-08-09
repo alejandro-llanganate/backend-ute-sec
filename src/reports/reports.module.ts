@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from 'src/users/users.module';
 import { ObservationController } from './controllers/observation.controller';
 import { ReportController } from './controllers/report.controller';
 import { RiskController } from './controllers/risk.controller';
@@ -11,7 +12,7 @@ import { ReportService } from './services/report.service';
 import { RiskService } from './services/risk.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([ReportEntity, ObservationEntity, RiskEntity])],
+    imports: [TypeOrmModule.forFeature([ReportEntity, ObservationEntity, RiskEntity]), UsersModule],
     controllers: [ReportController, RiskController, ObservationController],
     providers: [ReportService, RiskService, ObservationService]
 })

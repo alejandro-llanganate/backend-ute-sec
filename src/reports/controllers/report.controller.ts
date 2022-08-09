@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { CreateReportDTO, UpdateReportDTO } from "../dto/report.dto";
 import { ReportService } from "../services/report.service";
 
 @ApiTags('Reportes')
-@Controller('/reports')
+@Controller('api/reports')
 export class ReportController{
 
     constructor(
@@ -42,6 +42,7 @@ export class ReportController{
     async createReport(
         @Body() report : CreateReportDTO
     ){
+        console.log('repor --->>>>>> ', report)
         return await this.reportService.createReport(report);
     }
     

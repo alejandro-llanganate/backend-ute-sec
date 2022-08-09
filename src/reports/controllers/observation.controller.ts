@@ -1,10 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { CreateObservationDTO, UpdateObservationDTO } from "../dto/observation.dto";
 import { ObservationService } from "../services/observation.service";
 
+@ApiBearerAuth()
 @ApiTags('Observaciones')
-@Controller('/observations')
+@Controller('api/observations')
 export class ObservationController{
 
     constructor(
@@ -19,6 +20,11 @@ export class ObservationController{
     @Get('/getAllObservations')
     async getAllObservations(){
         return await this._observationService.getAllObservations();
+    }
+
+    @Get('/getObservationByReport/:id')
+    async getObservationByReport(@Param('id') idReport : string){
+        return await this._observationService.getObservationByReport(idReport);
     }
 
     @ApiOperation(

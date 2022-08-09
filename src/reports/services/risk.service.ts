@@ -2,32 +2,32 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateRiskDTO, UpdateRiskDTO } from "../dto/risk.dto";
-import { RiskEntity } from "../entities/risk.entity";
+import { RiskEntity, TipificacionCode } from "../entities/risk.entity";
 
 @Injectable()
 export class RiskService {
 
     constructor(
-        @InjectRepository(RiskEntity) riskRepo : Repository<RiskEntity>
+        @InjectRepository(RiskEntity) private riskRepo : Repository<RiskEntity>
     ){}
 
     async getAllRisks(){
-        return 'getAllRisks';
+        return this.riskRepo.find();
     }
 
     async getRiskById(idRisk : string){
-        return 'getRiskById';
+        return this.riskRepo.findOne(idRisk);
+    }
+
+    async getRiskByTag(tag : TipificacionCode){
+        return await this.riskRepo.findOne({where: {tipificacion: tag}})
     }
 
     async createRisk(risk : CreateRiskDTO){
-        return 'createRisk';
-    }
-
-    async updateRisk(idRisk : string, risk : UpdateRiskDTO){
-        return 'updateRisk';
+        return this.riskRepo.save(risk);
     }
 
     async deleteRisk(idRisk : string){
-        return 'deleteRisk';
+        return this.riskRepo.delete(idRisk);
     }
 }

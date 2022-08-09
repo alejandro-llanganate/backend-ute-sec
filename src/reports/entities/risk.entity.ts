@@ -1,4 +1,5 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { ObservationEntity } from "./observation.enitity";
 
 export enum TipificacionCode {
     R2 = "R2",
@@ -8,10 +9,10 @@ export enum TipificacionCode {
     R9 = "R9",
 }
 
-@Entity()
+@Entity("Risk")
 export class RiskEntity {
-    @PrimaryGeneratedColumn()
-    id: number
+    @PrimaryGeneratedColumn('uuid')
+    id: string
 
     @Column({
         type: "enum",
@@ -21,5 +22,8 @@ export class RiskEntity {
 
     @Column()
     descripcion: string
+
+    @OneToMany( () => ObservationEntity, observation => observation.risk)
+    observations: ObservationEntity[]
 }
 

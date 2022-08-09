@@ -26,10 +26,6 @@ export class AuthService {
         return null;
     }
 
-    async logout(){
-        return '';
-    }
-
     generateJWT(user : UserEntity){
         const payload : PayloadToken = { sub: user.id, rol: user.rol}
         console.log('payload',payload);

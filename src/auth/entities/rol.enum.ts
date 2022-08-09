@@ -1,1 +1,0 @@
-export type RolType = 'ADMINISTRADOR' | 'AUDITOR' | 'USUARIO'; 

@@ -1,9 +1,11 @@
-import { Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { ApiProperty, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { ApiBearerAuth, ApiProperty, ApiTags } from "@nestjs/swagger";
+import { CreateScanDto } from "../dto/create-scan.dto";
 import { ScanService } from "../services/scan.service";
 
+@ApiBearerAuth()
 @ApiTags('Escaneo')
-@Controller('/scan')
+@Controller('api/scan')
 export class ScanController{
 
     constructor(
@@ -15,10 +17,10 @@ export class ScanController{
             description: 'Método para escanear una página web.'
         }
     )
-    @Get('/scanWebPage/:url')
+    @Post('/scanWebPage')
     async scanWebPage(
-        @Param('url') url : string
+        @Body() scan : CreateScanDto
     ){
-        return this.scanService.createScan();
+        return await this.scanService.createScan(scan.url);
     }
 }

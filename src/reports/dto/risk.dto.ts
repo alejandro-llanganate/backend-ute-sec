@@ -10,6 +10,7 @@ export class CreateRiskDTO {
     tipificacion: TipificacionCode
 
     @Column()
+    @IsNotEmpty()
     @ApiProperty()
     descripcion : string
 }

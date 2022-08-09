@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { CreateRiskDTO, UpdateRiskDTO } from "../dto/risk.dto";
 import { RiskService } from "../services/risk.service";
 
-
+@ApiBearerAuth()
 @ApiTags('Riesgos')
-@Controller('/risks')
+@Controller('api/risks')
 export class RiskController{
 
     constructor(
@@ -44,18 +44,6 @@ export class RiskController{
         @Body() risk : CreateRiskDTO
     ){
         return await this._riskService.createRisk(risk);
-    }
-    
-    @ApiOperation(
-        {
-            description: 'Método para actualizar un riesgo'
-        }
-    )
-    @Put('/updateRisk/:id')
-    async updateRisk(
-        @Param('id') id : string, @Body() risk : UpdateRiskDTO
-    ){
-        return this._riskService.updateRisk(id, risk);
     }
 
     @ApiOperation(
