@@ -1,10 +1,10 @@
 version: '3.3'
 
 services:
-  dbepn:
+  dbute:
     image: postgres:13
     environment:
-      - POSTGRES_DB=db_epn
+      - POSTGRES_DB=db_ute
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=123456
     ports:

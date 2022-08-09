@@ -33,6 +33,11 @@ export class ReportController{
         return this.reportService.getReportById(id);
     }
 
+    @Get('/getReportsByUserId/:idUser')
+    async getReportsByUserId(@Param('idUser') idUser : string){
+        return this.reportService.getReportsByUserId(idUser);
+    }
+
     @ApiOperation(
         {
             description: 'Método para crear reporte'

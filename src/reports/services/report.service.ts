@@ -32,6 +32,10 @@ export class ReportService {
         return this.reportRepo.findOne(id);
     }
 
+    async getReportsByUserId(idUser : string){
+        return this.reportRepo.find({where: {user:{id: idUser}}});
+    }
+
     async createReport(report : CreateReportDTO){
         const usuario = await this.userService.getUserById(report.idUsuario);
         const reporte = this.reportRepo.create(report);
