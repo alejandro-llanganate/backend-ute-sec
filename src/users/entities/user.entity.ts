@@ -19,7 +19,7 @@ export class UserEntity {
     @Column("varchar", { length: 100})
     password: string;
 
-    @Column("varchar", { default: 'USUARIO'})
+    @Column("varchar")
     rol : string;
 
     @OneToMany(() => ReportEntity, report => report.user)

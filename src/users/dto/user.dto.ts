@@ -25,7 +25,9 @@ export class CreateUserDTO {
     readonly password: string;
 
     @ApiProperty()
-    readonly rol : string
+    @IsString()
+    @IsNotEmpty()
+    public rol : string
 }
 
 export class UpdateUserDTO {

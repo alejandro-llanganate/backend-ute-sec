@@ -23,7 +23,6 @@ export class AuthController {
     async login(@Body() credentials : AuthCredentialsDTO){
         const userAuth = await this._authService.login(credentials);
         if (userAuth) {
-            console.log('userAuth', userAuth)
             return this._authService.generateJWT(userAuth);
         }else {
             return new HttpException('USUARIO NO AUTORIZADO', 404);        
@@ -36,7 +35,6 @@ export class AuthController {
         description: 'Método para obtener un usuario a partir de un token'
     })
     async getUsuario(@Req() req: Request) {
-    console.log(req.headers.authorization);
       const reqToken = req.headers.authorization.split(" ")[1]
       const values = this.jwtService.decode(reqToken);
       const {password, ...user} = await this.userService.getUserById(values.sub)

@@ -47,7 +47,6 @@ export class ReportController{
     async createReport(
         @Body() report : CreateReportDTO
     ){
-        console.log('repor --->>>>>> ', report)
         return await this.reportService.createReport(report);
     }
     

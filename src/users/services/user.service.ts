@@ -29,6 +29,7 @@ export class UserService {
         const newUser = this.userRepo.create(user);
         const hashPassword = await bcrypt.hash(user.password, 10);
         newUser.password = hashPassword;
+        newUser.rol = user.rol;
         return this.userRepo.save(newUser);
     }
 

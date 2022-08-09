@@ -11,11 +11,9 @@ export class ScanService {
     constructor(private readonly httpService: HttpService) { }
 
     async createScan(url : string) : Promise<ScanResult> {
-        console.log('before');
 
         const httpsAgent = new Agent({ rejectUnauthorized: false });
         const resp = await this.httpService.get(url, {httpsAgent}).toPromise();
-        console.log('after');
 
         if(!resp){
             return null;
@@ -37,7 +35,6 @@ export class ScanService {
     }
 
     private verifyBadDataObfuscation(webPage : string){
-        console.log('verifyBadDataObfuscation');
         const $ = cheerio.load(webPage);
         const scripts = $('script');
         scripts.each((i, element) => {
@@ -58,7 +55,6 @@ export class ScanService {
 
 
     private verifyAutocomplete(webPage: string) {
-        console.log('verifyAutocomplete');
 
         const $ = cheerio.load(webPage);
         const results = $('input');
@@ -74,7 +70,6 @@ export class ScanService {
     }
 
     private verifyNoDataEncryption(response: any) {
-        console.log('verifyNoDataEncryption');
 
         if (response.request.res.socket.getPeerCertificate) {
             if (response.request.res.socket.getPeerCertificate(false)) {
@@ -88,7 +83,6 @@ export class ScanService {
     }
 
     private useKeylogger(webPage: string) {
-        console.log('useKeylogger');
 
         const $ = cheerio.load(webPage);
         const results = $('input');
@@ -106,7 +100,6 @@ export class ScanService {
     }
 
     private virifySocialNetworks(webPage: string) {
-        console.log('virifySocialNetworks');
 
         const $ = cheerio.load(webPage);
         const results = $('a');
